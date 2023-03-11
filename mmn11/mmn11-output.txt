@@ -1,0 +1,15 @@
+Welcome to DrRacket, version 8.8 [cs].
+Language: racket, with debugging; memory limit: 128 MB.
+> (my_append '(a b c) '(x y z))
+'(a b c x y z)
+> (my_append_fr '(a b c) '(x y z))
+'(a b c x y z)
+> (filter even? '(1 2 3 4 5 6)) 
+'(2 4 6)
+> (my_filter even? '(1 2 3 4 5 6)) 
+'(2 4 6)
+> (set-dif '(a b c d) '(x b d w))
+'(w x c a)
+> (foo `(2 3 (7 4 5 6) 8 (9) 2) 0) 
+'((3 (7 5) (9)) . 5)
+> 
