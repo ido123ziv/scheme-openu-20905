@@ -49,3 +49,14 @@
               0))
       (add-poly (q_x t_x)
           (+ (coeff q_x m) (coeff t_x m))))))
+
+; is-zero? : Poly -> Boolean
+(define is-zero?
+  (lambda (p_x)
+    (cases poly p_x
+      (zero () 
+          #t)
+      (make-poly (a n)
+          (eqv? a 0))
+      (add-poly (q_x t_x)
+          (and (is-zero? q_x) (is-zero? t_x))))))
