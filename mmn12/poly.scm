@@ -37,3 +37,15 @@
       (add-poly (q_x t_x)
           (max (degree q_x) (degree t_x))))))
 
+; coeff : Poly x Exponent -> Integer
+(define coeff
+  (lambda (p_x m)
+    (cases poly p_x
+      (zero () 
+          0)
+      (make-poly (a n)
+          (if (eqv? n m)
+              a
+              0))
+      (add-poly (q_x t_x)
+          (+ (coeff q_x m) (coeff t_x m))))))
