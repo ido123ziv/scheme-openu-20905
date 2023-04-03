@@ -25,3 +25,15 @@
   (add-poly
    (q_x poly?)
    (t_x poly?)))
+
+; degree : Poly -> Integer
+(define degree
+  (lambda (p_x)
+    (cases poly p_x
+      (zero () 
+          0)
+      (make-poly (a n)
+          n)
+      (add-poly (q_x t_x)
+          (max (degree q_x) (degree t_x))))))
+
