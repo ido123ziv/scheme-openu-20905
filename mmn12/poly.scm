@@ -1,5 +1,6 @@
 #lang eopl
 ; q1 polynomial "𝑎1𝑥𝑛+𝑎2𝑥𝑛−1+⋯+𝑎𝑛"
+; p(x)= a0+a1x+a2x2+...+akxk
 
 ;------------------------------------------------------------
 ; taken from eopl code (chapter 2, utils.scm)
@@ -60,3 +61,15 @@
           (eqv? a 0))
       (add-poly (q_x t_x)
           (and (is-zero? q_x) (is-zero? t_x))))))
+
+
+; print-poly prints the poly as a string
+(define print-poly
+  (lambda (p_x)
+    (cases poly p_x
+      (zero () 
+          "0")
+      (make-poly (a n)
+         (string-append (number->string n) "x^" (number->string a)))
+      (add-poly (q_x t_x)
+          (string-append ( print-poly q_x) "+" (print-poly t_x))))))
