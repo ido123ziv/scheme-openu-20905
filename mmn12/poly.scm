@@ -1,22 +1,9 @@
 #lang eopl
 ; q1 polynomial "𝑎1𝑥𝑛+𝑎2𝑥𝑛−1+⋯+𝑎𝑛"
 ; p(x)= a0+a1x+a2x2+...+akxk
+(require "unittests.scm")
 
-;------------------------------------------------------------
-; taken from eopl code (chapter 2, utils.scm)
-(define-syntax equal??
-  (syntax-rules ()
-    ((_ x y)
-     (let ((x^ x) (y^ y))
-       (if (not (equal? x y))
-           (eopl:error 'equal??
-                       "~s is not equal to ~s" 'x 'y)
-           (display ""))))))
-
-;------------------------------------------------------------
-
-
-; Polynom ADT
+; Polynom DataType
 
 (define-datatype poly poly?
   (zero)
@@ -75,6 +62,7 @@
           (string-append ( print-poly q_x) "+" (print-poly t_x))))))
 
 
+; calc-poly calcs the value of given x on the poly
 (define calc-poly
   (lambda (p_x x)
     (cases poly p_x
@@ -84,3 +72,25 @@
          (* a (expt x n)))
       (add-poly (q_x t_x)
           (+ (calc-poly q_x x) (calc-poly t_x x))))))
+
+;unit tests
+(define p (degree (add-poly (make-poly 3 4) (make-poly 5 4)) ))
+(equal?? (degree p) 4)
+(equal?? (coeff p 4) 3)
+(equal?? (coeff p 1) 2)
+(equal?? (coeff p 9) 0)
+(equal?? (is-zero? p) #f)
+
+(equal?? (degree (add-poly (make-poly 3 4) (make-poly 5 4))) 4)
+(equal?? (degree (add-poly (make-poly 3 4) (make-poly 5 4))) 4)
+(equal?? (coeff (add-poly (make-poly 3 4) (make-poly 5 4)) 4) 8)
+
+(equal?? (is-zero? (zero)) #t)
+(equal?? (is-zero? (add-poly (zero) (make-poly 0 0))) #t)
+(equal?? (is-zero? (add-poly (zero) (make-poly 0 2))) #t)
+(equal?? (is-zero? (add-poly (zero) (make-poly 2 2))) #f)
+
+(equal?? (calc-poly (add-poly (make-poly 3 4) (make-poly 2 1)) 2) 52)
+(equal?? (calc-poly (add-poly (make-poly 3 4) ) 2) 48)
+(equal?? (calc-poly (zero) 1) 0)
+(report-unit-tests-completed poly)
