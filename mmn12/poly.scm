@@ -70,6 +70,17 @@
       (zero () 
           "0")
       (make-poly (a n)
-         (string-append (number->string n) "x^" (number->string a)))
+         (string-append (number->string a) "x^" (number->string n)))
       (add-poly (q_x t_x)
           (string-append ( print-poly q_x) "+" (print-poly t_x))))))
+
+
+(define calc-poly
+  (lambda (p_x x)
+    (cases poly p_x
+      (zero () 
+          0)
+      (make-poly (a n)
+         (* a (expt x n)))
+      (add-poly (q_x t_x)
+          (+ (calc-poly q_x x) (calc-poly t_x x))))))
