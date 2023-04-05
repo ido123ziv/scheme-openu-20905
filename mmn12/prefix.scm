@@ -26,3 +26,4 @@
 
 ;Unit Tests
 (equal?? (parse-prefix '(-3 2)) (diff-exp (const-exp -3) (const-exp 2)))
+(report-unit-tests-completed prefix)
