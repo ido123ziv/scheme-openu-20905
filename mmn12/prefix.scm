@@ -25,5 +25,6 @@
   (eopl:error "parse-prefix didn't get get a list")))
 
 ;Unit Tests
-(equal?? (parse-prefix '(-3 2)) (diff-exp (const-exp -3) (const-exp 2)))
-(report-unit-tests-completed prefix)
+(equal?? (parse-prefix '(- - 3 2 - 4 - 12 7)) (diff-exp (diff-exp (const-exp 3) (const-exp 2)) (diff-exp (const-exp 4) (diff-exp (const-exp 12) (const-exp 7)))))
+(equal?? (parse-prefix '(- -3 2)) (diff-exp (const-exp -3) (const-exp 2)))
+(report-unit-tests-completed 'prefix)

@@ -93,4 +93,4 @@
 (equal?? (calc-poly (add-poly (make-poly 3 4) (make-poly 2 1)) 2) 52)
 (equal?? (calc-poly (add-poly (make-poly 3 4) ) 2) 48)
 (equal?? (calc-poly (zero) 1) 0)
-(report-unit-tests-completed poly)
+(report-unit-tests-completed 'poly)
