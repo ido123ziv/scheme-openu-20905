@@ -1,10 +1,11 @@
 # mmn13
 The questions are about the let language            
 - [basic-let](#basic-let)         
-    - [Q1-a](#q1-a---307)         
-    - [Q1-b](#q1-b---308)         
-    - [Q2-a](#q2-a---309)         
-    - [Q2-b](#q2-b---310)         
+    - [Q1-arithmetics](#q1-a---307)         
+    - [Q1-predicates](#q1-b---308)         
+    - [Q2-listOperations](#q2-a---309)         
+    - [Q2-list](#q2-b---310) 
+- [arrays](#q3-arrays)
 
 # basic let
 Available [here](let-lang/)             
@@ -82,4 +83,24 @@ but on let we don't the list operator `list(item1, item2, item3)` [3.10](2/3-10/
 > (run "let x = 4
 in list(x, -(x,1), -(x,3))")
 (list (num-val 4) (num-val 3) (num-val 1))
+```
+# Q3 Arrays
+adding support for `arrays`! [q3](3/):
+```racket
+> (run "let A = array {10, -(5,7) , zero?(8), array {1,2,3}, 12} in A")
+(array-val (arr (list (num-val 10) (num-val -2) (bool-val #f) (array-val (arr (list (num-val 1) (num-val 2) (num-val 3)))) (num-val 12))))
+> (run "let A = array {10, -(5,7) , zero?(8), array {1,2,3}, 12} in <A>[1]")
+(num-val 10)
+> (run "let A = array {10, -(5,7) , zero?(8), array {1,2,3}, 12} in <A>[2]")
+(num-val -2)
+> (run "let A = array {10, -(5,7) , zero?(8), array {1,2,3}, 12} in <A>[3]")
+(bool-val #f)
+> (run "let A = array {10, -(5,7) , zero?(8), array {1,2,3}, 12} in <A>[4]")
+(array-val (arr (list (num-val 1) (num-val 2) (num-val 3))))
+> (run "let A = array {10, -(5,7) , zero?(8), array {1,2,3}, 12} in <<A>[4]>[2]")
+(num-val 2)
+> (run "let A = array {10, -(5,7) , zero?(8), array {1,2,3}, 12} in <A>[5]")
+(num-val 12)
+> (run "let A = array {10, -(5,7) , zero?(8), array {1,2,3}, 12} in -(<A>[1],<<A>[4]>[2])")
+(num-val 8)
 ```

@@ -87,21 +87,21 @@
                    (let* ((ar (expval->array(value-of exp1 env)))
                           (arr-lst (cases array ar
                                  (arr (lst) lst)))
-                          (arr-length (get-size arr-lst 0))
+                          (arr-length (get-size arr-lst 1))
                           (index (expval->num(value-of exp2 env))))
-                     (if (or (< arr-length index) (< index 0))
+                     (if (or (< arr-length index) (< index 1)) ; if in range
                          (eopl:error "Illegal index!")
-                         (apply-index arr-lst index))))
+                         (apply-index arr-lst (- index 1))))) ; using -1 to start counting from 1
 
         )))
   
-  ;;Will count how many values in array.
+  ;used to count the size of the array
   (define get-size
     (lambda (lst c)
       (if (null? lst)
           c
           (get-size (cdr lst) (+ c 1)))))
-
+; used for getting the item in the index of the list
   (define apply-index
     (lambda (lst index)
       (list-ref lst index)))
