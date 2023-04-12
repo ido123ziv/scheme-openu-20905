@@ -43,3 +43,27 @@ but on let we don't have the predicate of `equal?` , `less` and `greater?` so we
         in greater?(x,y)")
 (bool-val #t)
 ```
+# Q2 a -> 3.09
+but on let we don't have the list operators of `cons`, `null?` `car` , `cdr` and `emptylist` so we add them on [3.09](2/3-09/):
+```racket
+> (run "let x = 4
+       in cons(x,
+                cons(cons(-(x,1),
+                           emptylist),
+                                     emptylist))")
+(cons-val (num-val 4) (cons-val (cons-val (num-val 3) (emptylist-val)) (emptylist-val)))
+> (run "let x = 4
+       in car(
+          cons(-(x,1),emptylist))")
+(num-val 3)
+> (run "let x = 4
+       in null?
+          (cons(-(x,1),emptylist))")
+(bool-val #f)
+> (run "let x = 4
+       in cdr(cons(x,
+                cons(cons(-(x,1),
+                           emptylist),
+                                     emptylist)))")
+(cons-val (cons-val (num-val 3) (emptylist-val)) (emptylist-val))
+```
