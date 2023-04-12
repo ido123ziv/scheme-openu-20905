@@ -51,7 +51,7 @@
        array-exp)
       
       (expression
-       ("<" expression "[" expression "]" ">")
+       ("<" expression ">" "[" expression "]" )
        index-exp)
 
       ))

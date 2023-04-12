@@ -88,10 +88,10 @@
                           (arr-lst (cases array ar
                                  (arr (lst) lst)))
                           (arr-length (get-size arr-lst 0))
-                          (v2 (expval->num(value-of exp2 env))))
-                     (if (or (< arr-length v2) (< v2 0))
+                          (index (expval->num(value-of exp2 env))))
+                     (if (or (< arr-length index) (< index 0))
                          (eopl:error "Illegal index!")
-                         (apply-index arr-lst v2))))
+                         (apply-index arr-lst index))))
 
         )))
   
