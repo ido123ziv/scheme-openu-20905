@@ -67,3 +67,10 @@ but on let we don't have the list operators of `cons`, `null?` `car` , `cdr` and
                                      emptylist)))")
 (cons-val (cons-val (num-val 3) (emptylist-val)) (emptylist-val))
 ```
+# Q2 b -> 3.10
+but on let we don't the list operator `list(item1, item2, item3)` [3.10](2/3-10/):
+```racket
+> (run "let x = 4
+in list(x, -(x,1), -(x,3))")
+(list (num-val 4) (num-val 3) (num-val 1))
+```
