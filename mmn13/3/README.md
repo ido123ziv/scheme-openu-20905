@@ -16,3 +16,12 @@ and
 > (run "let A = array {10, -(5,7) , zero?(8), array {1,2,3}, 12} in index A[0]")
 (num-val 10)
 ```
+using arrows:
+```racket
+> (run "let A = array {10, -(5,7) , zero?(8), array {1,2,3}, 12} in <A[0]>")
+(num-val 10)
+> (run "let A = array {10, -(5,7) , zero?(8), array {1,2,3}, 12} in <A[3]>")
+(array-val (arr (list (num-val 1) (num-val 2) (num-val 3))))
+> (run "let A = array {10, -(5,7) , zero?(8), array {1,2,3}, 12} in <<A[3]>[1]>")
+(num-val 2)
+```
