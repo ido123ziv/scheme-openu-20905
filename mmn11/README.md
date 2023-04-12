@@ -46,3 +46,13 @@ and define the predicate which is a boolean method:
 > (pair? (cons "a" "b"))
 #t
 ```
+merging two lists?      
+using `foldr`:        
+```racket
+>  (define idoz (list "a" "b" "c"))
+> (define zido '(1 2 3))
+> (foldr cons zido idoz)
+'("a" "b" "c" 1 2 3)
+```
+# lambda
+headless function, returns a value after calculations
