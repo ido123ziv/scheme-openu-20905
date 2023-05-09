@@ -49,6 +49,12 @@
            => (lambda (test)
                 (run (cadr test))))
           (else (eopl:error 'run-one "no such test: ~s" test-name))))))
+  
+  let makefact = proc (maker 2) proc (x)
+    if zero? (x) then 1
+    else ((timesn x) ((maker2 maker2) -(x,1))) in
+    let factorial = proc (x) ((makefact makefact) x) in
+    (factorial num)
  
   ;; (run-all)
   

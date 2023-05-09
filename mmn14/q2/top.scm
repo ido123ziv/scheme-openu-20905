@@ -54,6 +54,14 @@
            => (lambda (test)
                 (run (cadr test))))
           (else (eopl:error 'run-one "no such test: ~s" test-name))))))
+  
+
+  (define multiply "let makemult = proc (maker)
+proc (x)
+if zero? (x)
+then 0
+else -(((maker maker) -(x,1)) , -4)
+in let times4 = proc (x) ((makemult makemult) x)")
  
   ;; (run-all)
   
