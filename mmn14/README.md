@@ -6,7 +6,19 @@ The questions are about the proc language
     - [Q3](#q3)         
 
 # basic proc
-Available [here](proc-lang/)             
+Available [here](proc-lang/)  
+```racket
+> (define ido "let x = 200
+in let f = 
+proc (z) -(z,x)
+in let x = 100
+in let g =
+proc (z) -(z,x)
+in -((f 1), (g 1))")
+> (run ido)
+(num-val -100)
+> 
+```           
 
 
 # Q1 
