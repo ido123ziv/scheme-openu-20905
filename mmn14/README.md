@@ -6,7 +6,17 @@ The questions are about the proc language
     - [Q3](#q3)         
 
 # basic proc
-Available [here](proc-lang/)  
+Available [here](proc-lang/)  		
+we don't have the `,` character in proc!			
+
+simple proc:
+```racket
+> (run "(proc (a) -(a,-(0,1)) -(10,1))")
+(num-val 10)
+```
+
+proc with let:
+
 ```racket
 > (define ido "let x = 200
 in let f = 
@@ -19,6 +29,7 @@ in -((f 1), (g 1))")
 (num-val -100)
 > 
 ```           
+
 
 
 # Q1 
