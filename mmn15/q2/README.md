@@ -33,10 +33,11 @@ end")
 
 assigning three items to a 4 item array:
 ```racket
-(run "let a= #[4]{10,20,30}
+> (run "let a= #[4]{10,20,40}
 in begin 
 setref([a,2], 80);
 deref([a,2])
 end")
-
+#<procedure:>>
+. . interp.scm:119:12: size doesn't match
 ```

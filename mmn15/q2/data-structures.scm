@@ -49,15 +49,11 @@
 	(ref-val (ref) ref)
 	(else (expval-extractor-error 'reference v)))))
   
-    (define-datatype array array?
-    (arr
-     (lst (list-of expval?))))
-  
   (define expval->array
     (lambda (v)
       (cases expval v
         (array-val (type size initarr) arr)
-        (else (expval-extractor-error 'array v)))))
+      (else (expval-extractor-error 'array v)))))
 
   (define expval-extractor-error
     (lambda (variant value)
@@ -84,6 +80,11 @@
       (proc-bodies (list-of expression?))
       (saved-env environment?)))
 
+  
+  (define-datatype array array?
+    (arr
+     (lst (list-of expval?))))
+     
   ;; env->list : Env -> List
   ;; used for pretty-printing and debugging
   (define env->list
