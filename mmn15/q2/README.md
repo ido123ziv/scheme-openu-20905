@@ -15,7 +15,7 @@ assign value:
 (run "let a= #[4]{10,20,30,40}
 in begin 
 setref([a,2], 80);
-defref([a,2])
+deref([a,2])
 end")
 (num-val 80)
 ```
@@ -23,12 +23,12 @@ end")
 ## syntax errors
 assign int to boolean array:
 ```racket
-(run "let a= #[4]{10,20,30,40}
+> (run "let a= ?[4]{10,20,30,40}
 in begin 
 setref([a,2], 80);
-defref([a,2])
+deref([a,2])
 end")
-
+. . interp.scm:168:16: Array initialization mismatch array type
 ```
 
 assigning three items to a 4 item array:
@@ -36,7 +36,7 @@ assigning three items to a 4 item array:
 (run "let a= #[4]{10,20,30}
 in begin 
 setref([a,2], 80);
-defref([a,2])
+deref([a,2])
 end")
 
 ```
