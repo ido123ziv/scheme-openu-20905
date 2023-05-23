@@ -109,36 +109,35 @@
                 (setref! ref v2)
                 (num-val 23)))))
         
-            (arr-exp (typ size first-exp more-exps)
-                     (let (  
-                           (vals (map (lambda (exp) (value-of exp env) ) (cons first-exp more-exps))) 
-                           (size (expval->num (value-of size env)))) ;size of the array 
-                           (if (= (length vals) size) 
-                               (array-val typ size (helper typ vals '()))
-                           (eopl:error "size doesn't match"))
-                       )  
-                       )
+        (arr-exp (typ size first-exp more-exps)
+          (let 
+            ((vals 
+              (map (lambda (exp) (value-of exp env)) (cons first-exp more-exps))) 
+                (size (expval->num (value-of size env)))) ;size of the array 
+          (if (= (length vals) size) 
+              (array-val typ size (helper typ vals '()))
+            (eopl:error "size doesn't match"))))
         
-    (index-exp (arrexp index)
-    (let ((li (expval->num (value-of index env)))
-      (cases expval arrexp
-      (array-val (typ size vals)
-      (if (< i size)
-      (let ((val (list-ref vals i)))
-        val
-        (eopl:error "index out of bounds"))))
-        (eopl:error "must be an array")))))
-        )))
+        (index-exp (arrexp index) 
+          (let ((i (expval->num (value-of index env))) 
+            (cases expval arrexp 
+              (array-val (typ size vals) 
+                (if (< i size) 
+                   (let ((val (list-ref vals i) val )))
+                            (eopl:error "index out of bounds") 
+                            ))
+                (eopl:error "must be an array") 
+                ))))  
+        
+        )
+      )
+    ) 
 
-  ;; apply-procedure : Proc * ExpVal -> ExpVal
-  ;; 
-  ;; uninstrumented version
-  ;;   (define apply-procedure
-  ;;    (lambda (proc1 arg)
-  ;;      (cases proc proc1
-  ;;        (procedure (bvar body saved-env)
-  ;;          (value-of body (extend-env bvar arg saved-env))))))
 
+
+  
+  
+  
   ;; instrumented version
   (define apply-procedure
     (lambda (proc1 arg)
@@ -159,13 +158,13 @@
 
 
 
-    (define (helper typ vals lst) 
-      (cases type typ (type-question () ) 
-      (type-pound () 
-        (if (null? vals) lst 
-          (cases expval (car vals) 
-            (numval (num) (helper (cdr vals) (cons (newref (car vals)) lst))) 
-            (else (eopl:error "type mismatch")) ) )) (type-at () ) ))
+  (define (helper typ vals lst) 
+    (cases type typ (type-question () ) 
+    (type-pound () 
+      (if (null? vals) lst 
+        (cases expval (car vals) 
+          (numval (num) (helper (cdr vals) (cons (newref (car vals)) lst))) 
+          (else (eopl:error "type mismatch")) ) )) (type-at () ) ))
 
 
 
