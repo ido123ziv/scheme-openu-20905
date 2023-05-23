@@ -119,7 +119,7 @@
             (eopl:error "size doesn't match"))))
         
         (index-exp (arrexp index) 
-          (let ((i (expval->num (value-of index env))) 
+          (let ((i (expval->num (value-of index env)))) 
             (cases expval arrexp 
               (array-val (typ size vals) 
                 (if (< i size) 
@@ -127,7 +127,7 @@
                             (eopl:error "index out of bounds") 
                             ))
                 (eopl:error "must be an array") 
-                ))))  
+                )))  
         
         )
       )
