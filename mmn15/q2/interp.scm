@@ -160,12 +160,15 @@
 
 
   (define (helper typ vals lst) 
-    (cases type typ (type-question () ) 
+    (cases type typ 
+    (type-question () ()) 
     (type-pound () 
       (if (null? vals) lst 
         (cases expval (car vals) 
-          (numval (num) (helper (cdr vals) (cons (newref (car vals)) lst))) 
-          (else (eopl:error "type mismatch")) ) )) (type-at () ) ))
+          (num-val (num) (helper (cdr vals) (cons (newref (car vals)) lst))) 
+          (else (eopl:error "type mismatch")) ) )) 
+    (type-at () ()) 
+    ))
 
 
 
