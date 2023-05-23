@@ -165,7 +165,7 @@
     (type-pound () 
       (if (null? vals) lst 
         (cases expval (car vals) 
-          (num-val (num) (helper (cdr vals) (cons (newref (car vals)) lst))) 
+          (num-val (num) (helper typ (cdr vals) (cons (newref (car vals)) lst))) 
           (else (eopl:error "type mismatch")) ) )) 
     (type-at () ()) 
     ))

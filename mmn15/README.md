@@ -3,6 +3,7 @@ The questions are about the proc language
 - [basic-implicit-ref](#basic-implicit-ref) 
 - [Q1](#q1)         
 - [basic-explicit-ref](#basic-explicit-ref) 
+- [Q2](#q2)         
    
     
 # basic implicit-ref
@@ -62,5 +63,17 @@ in let a = (g 11)
 (num-val -1)
 ```
 
+# Q2 
+Adding array utilty
+Available here: [q2](q2/)
+```racket
+ (run "let a= #[4]{10,20,30,40}
+in begin 
+setref([a,2], 80);
+defref([a,2])
+end")
+(num-val 80)
+
+```
 
 
