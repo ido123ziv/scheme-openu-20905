@@ -116,7 +116,7 @@
                 (size (expval->num (value-of size env)))) ;size of the array 
           (if (= (length vals) size) 
               (array-val typ size (helper typ vals '()))
-            (eopl:error "size doesn't match"))))
+            (eopl:error "Array initialization mismatch array size"))))
         
         (index-exp (arrexp index) 
           (let ((i (expval->num (value-of index env)))) 
