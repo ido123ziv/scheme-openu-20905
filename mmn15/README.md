@@ -2,6 +2,7 @@
 The questions are about the proc language            
 - [basic-implicit-ref](#basic-implicit-ref) 
 - [Q1](#q1)         
+- [basic-explicit-ref](#basic-explicit-ref) 
    
     
 # basic implicit-ref
@@ -39,6 +40,27 @@ end")
 (num-val 9)
 ```
 
+# basic explicit-ref
+Available [here](explicit-refs/) 
+sets a to 11        
+setref of a to 11 
+let b set to 11 - (-1) = 12                   
+calc a - b = 11 - 12 = -1
+
+```racket
+> (run 
+"let g = let counter = newref(0)
+     in proc (dummy) 
+        begin 
+            setref(counter, -(deref(counter), -1)); 
+            deref(counter) 
+        end 
+in let a = (g 11) 
+    in let b = (g 11) 
+        in -(a,b) 
+")
+(num-val -1)
+```
 
 
 
