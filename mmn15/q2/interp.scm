@@ -108,6 +108,26 @@
               (begin
                 (setref! ref v2)
                 (num-val 23)))))
+        
+            (arr-exp (typ size first-exp more-exps)
+                     (let (  
+                           (vals (map (lambda (exp) (value-of exp env) ) (cons first-exp more-exps))) 
+                           (size (expval->num (value-of size env)))) ;size of the array 
+                           (if (= (length vals) size) 
+                               (array-val typ size (helper typ vals '()))
+                           (eopl:error "size doesn't match"))
+                       )  
+                       )
+        
+    (index-exp (arrexp index)
+    (let ((li (expval->num (value-of index env)))
+      (cases expval arrexp
+      (array-val (typ size vals)
+      (if (< i size)
+      (let ((val (list-ref vals i)))
+        val
+        (eopl:error "index out of bounds"))))
+        (eopl:error "must be an array")))))
         )))
 
   ;; apply-procedure : Proc * ExpVal -> ExpVal
@@ -137,23 +157,7 @@
                   (eopl:printf "~%")))
               (value-of body new-env)))))))
 
-    (arr-exp (typ size first-exp more-exps) 
-    (let ( 
-      (vals (map (lambda (exp) (value-of exp env) ) (cons first-exp more-exps))) 
-      (size (expval->num (value-of size env))) ;size of the array 
-      (if (= (length vals) size) (array-val typ size (helper typ vats'())) ; NEW DATA TYPE DEFINED IN datastructure.scm 
-      )
-      (eopl:error "size doesn't match")) 
-    ))
-    (index-exp (arrexp index)
-    (let ((li (expval->num (value-of index env)))
-      (cases expval arrexp
-      (array-val (typ size vals)
-      (if (< i size)
-      (let ((val (list-ref vals i)))
-        val
-        (eopl:error "index out of bounds"))))
-        (eopl:error "must be an array")))))
+
 
     (define (helper typ vals lst) 
       (cases type typ (type-question () ) 
