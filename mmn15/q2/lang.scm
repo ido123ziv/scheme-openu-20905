@@ -74,7 +74,7 @@
 
       
       (expression 
-        (type "[" expression "]" "{" expression (arbno "," expression) "}") 
+        (type "[" expression "]" "{" (separated-list expression ",") "}") 
           arr-exp) 
 
         (type 

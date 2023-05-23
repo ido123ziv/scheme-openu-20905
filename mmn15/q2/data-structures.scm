@@ -52,7 +52,7 @@
   (define expval->array
     (lambda (v)
       (cases expval v
-        (array-val (type size initarr) arr)
+        (array-val (type size array) arr)
       (else (expval-extractor-error 'array v)))))
 
   (define expval-extractor-error

@@ -109,10 +109,10 @@
                 (setref! ref v2)
                 (num-val 23)))))
         
-        (arr-exp (typ size first-exp more-exps)
+        (arr-exp (typ size exps)
           (let 
             ((vals 
-              (map (lambda (exp) (value-of exp env)) (cons first-exp more-exps))) 
+              (map (lambda (exp) (value-of exp env)) exps)) 
                 (size (expval->num (value-of size env)))) ;size of the array 
           (if (= (length vals) size) 
               (array-val typ size (helper typ vals '()))
