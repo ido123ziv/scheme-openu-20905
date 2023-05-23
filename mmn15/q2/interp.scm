@@ -161,13 +161,21 @@
 
   (define (helper typ vals lst) 
     (cases type typ 
-    (type-question () ()) 
+    (type-question () 
+      (if (null? vals) lst 
+        (cases expval (car vals) 
+          (bool-val (bool) (helper typ (cdr vals) (cons (newref (car vals)) lst))) 
+          (else (eopl:error "Array initialization mismatch array type")) ) )) 
     (type-pound () 
       (if (null? vals) lst 
         (cases expval (car vals) 
           (num-val (num) (helper typ (cdr vals) (cons (newref (car vals)) lst))) 
-          (else (eopl:error "type mismatch")) ) )) 
-    (type-at () ()) 
+          (else (eopl:error "Array initialization mismatch array type")) ) )) 
+    (type-at () 
+    (if (null? vals) lst 
+        (cases expval (car vals) 
+          (ref-val (ref) (helper typ (cdr vals) (cons (newref (car vals)) lst))) 
+          (else (eopl:error "Array initialization mismatch array type")) ) )) 
     ))
 
 
