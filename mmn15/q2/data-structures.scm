@@ -20,7 +20,7 @@
     (ref-val
       (ref reference?))
     (array-val 
-    (typ type?) (size integer?) (array array?))
+    (typ type?) (size integer?) (array (list-of reference?)))
     )
 
 ;;; extractors:
@@ -83,7 +83,7 @@
   
   (define-datatype array array?
     (arr
-     (lst (list-of expval?))))
+     (lst (list-of reference?))))
      
   ;; env->list : Env -> List
   ;; used for pretty-printing and debugging

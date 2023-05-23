@@ -70,7 +70,7 @@ Available here: [q2](q2/)
  (run "let a= #[4]{10,20,30,40}
 in begin 
 setref([a,2], 80);
-defref([a,2])
+deref([a,2])
 end")
 (num-val 80)
 
