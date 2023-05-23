@@ -122,7 +122,7 @@
           (let ((i (expval->num (value-of index env)))) 
             (cases expval arrexp 
               (array-val (typ size vals) 
-                (if (< i size)  
+                (if (and (< i size) (< 0 i))
                    (let ((val (list-ref vals i)))
                      val
                             (eopl:error "index out of bounds") 
