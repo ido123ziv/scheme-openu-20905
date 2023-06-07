@@ -118,9 +118,14 @@
               (array-val typ size (helper typ vals '()))
             (eopl:error "Array initialization mismatch array size"))))
         
-        (index-exp (arrexp index) 
-          (let ((i (expval->num (value-of index env)))) 
-            (cases expval arrexp 
+       (index-exp (arrexp index) 
+          (let ((i (expval->num (value-of index env)))
+              (arr (expval->array (value-of arrexp env))))
+              (eopl:printf
+                "ar: ~s i: ~s
+                "
+                arr i)
+            (cases expval arr
               (array-val (typ size vals) 
                 (if (and (< i size) (not(< i 0)))
                    (let ((val (list-ref vals i)))
@@ -128,7 +133,8 @@
                             (eopl:error "index out of bounds") 
                             )))
                 (eopl:error "must be an array") 
-                )))  
+                )
+            ))  
         
         )
       )
