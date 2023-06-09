@@ -124,7 +124,7 @@
               (eopl:printf
                 "ar: ~s i: ~s
                 "
-                arr i)
+                (value-of arrexp env) i)
             (cases expval arr
               (array-val (typ size vals) 
                 (if (and (< i size) (not(< i 0)))

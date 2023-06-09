@@ -48,12 +48,16 @@
       (cases expval v
 	(ref-val (ref) ref)
 	(else (expval-extractor-error 'reference v)))))
-  
+
   (define expval->array
-    (lambda (v)
-      (cases expval v
-        (array-val (type size array) arr)
-      (else (expval-extractor-error 'array v)))))
+  (lambda (v) expval
+    ((array type size elements)
+     (let ((array-ref (make-array type size)))
+       (for-each-indexed (lambda (index element)
+                           (((array-ref) index) element))
+                         elements)
+       (array-ref))))
+    (_ (error "Invalid expval: not an array")))
 
   (define expval-extractor-error
     (lambda (variant value)
@@ -82,8 +86,7 @@
 
   
   (define-datatype array array?
-    (arr
-     (typ type?)
+     (arr (typ type?)
      (size integer?)
      (lst (list-of reference?)))
      )
